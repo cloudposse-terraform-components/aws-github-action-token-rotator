@@ -1,70 +1,73 @@
-name: "template"
-
+name: "aws-github-action-token-rotator"
 # Canonical GitHub repo
-github_repo: "cloudposse-terraform-components/template"
-
+github_repo: "cloudposse-terraform-components/aws-github-action-token-rotator"
 # Short description of this project
 description: |-
-  Description of this component
+  This component is responsible for provisioning
+  [Github Action Token Rotator](https://github.com/cloudposse/terraform-aws-github-action-token-rotator).
 
-usage: |-
-  **Stack Level**: Regional or Test47
+  This component creates a Lambda to rotate Github Action tokens in SSM Parameter Store.
 
-  Here's an example snippet for how to use this component.
-  
+  ## Usage
+
+  **Stack Level**: Regional
+
+  Here's an example snippet for how to use this component. This is generally deployed once and to the automation account's
+  primary region.
+
+  `stacks/catalog/github-action-token-rotator.yaml` file:
+
   ```yaml
   components:
     terraform:
-      foo:
+      github-action-token-rotator:
         vars:
           enabled: true
+          github_org_name: my-org
+          github_app_installation_id: 11111111
+          github_app_id: 222222
+          parameter_store_private_key_path: /github/runners/my-org/privateKey
+          parameter_store_token_path: /github/runners/my-org/registrationToken
   ```
 
+  Follow the manual steps using the
+  [guide in the upstream module](https://github.com/cloudposse/terraform-aws-github-action-token-rotator#quick-start) and
+  use `chamber` to add the secrets to the appropriate stage.
+
+  <!-- prettier-ignore-start -->
+
+  <!-- prettier-ignore-end -->
+
+  ## References
+
+  - [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/github-action-token-rotator) -
+    Cloud Posse's upstream component
 include:
   - "docs/terraform.md"
-
 tags:
-  - terraform
-  - terraform-modules
-  - aws
-  - components
-  - terraform-components
-  - root
-  - geodesic
-  - reference-implementation
-  - reference-architecture
-
+  - component/github-action-token-rotator
+  - layer/github
+  - provider/aws
 # Categories of this project
 categories:
-  - terraform-modules/root
-  - terraform-components
-
+  - component/github-action-token-rotator
+  - layer/github
+  - provider/aws
 # License of this project
 license: "APACHE2"
-
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse-terraform-components/template.svg?style=for-the-badge"
-    url: "https://github.com/cloudposse-terraform-components/template/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/for-the-badge.svg"
-    url: "https://slack.cloudposse.com"
-
-references:
-  - name: "Cloud Posse Documentation"
-    description: "Complete documentation for the Cloud Posse solution"
-    url: "https://docs.cloudposse.com"
-  - name: "Reference Architectures"
-    description: "Launch effortlessly with our turnkey reference architectures, built either by your team or ours."
-    url: "https://cloudposse.com/"
-
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse-terraform-components/aws-github-action-token-rotator.svg?style=for-the-badge
+    url: https://github.com/cloudposse-terraform-components/aws-github-action-token-rotator/releases/latest
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
 related:
-- name: "Cloud Posse Terraform Modules"
-  description: Our collection of reusable Terraform modules used by our reference architectures.
-  url: "https://docs.cloudposse.com/modules/"
-- name: "Atmos"
-  description: "Atmos is like docker-compose but for your infrastructure"
-  url: "https://atmos.tools"
-
+  - name: "Cloud Posse Terraform Modules"
+    description: Our collection of reusable Terraform modules used by our reference architectures.
+    url: "https://docs.cloudposse.com/modules/"
+  - name: "Atmos"
+    description: "Atmos is like docker-compose but for your infrastructure"
+    url: "https://atmos.tools"
 contributors: [] # If included generates contribs

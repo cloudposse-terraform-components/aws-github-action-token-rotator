@@ -1,4 +1,4 @@
-output "mock" {
-  description = "Mock output example for the Cloud Posse Terraform component template"
-  value       = local.enabled ? "hello ${basename(abspath(path.module))}" : ""
+output "github_action_token_rotator" {
+  value       = module.github_action_token_rotator
+  description = "GitHub action token rotator module outputs."
 }
