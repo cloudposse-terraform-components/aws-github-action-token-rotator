@@ -2,6 +2,6 @@
 _extends: .github
 repository:
   name: aws-github-action-token-rotator
-  description: This component is responsible for provisioning [Github Action Token Rotator](https://github
+  description: This component is responsible for provisioning Github Action Token Rotator
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
