@@ -5,7 +5,7 @@ tags:
   - provider/aws
 ---
 
-# Component: `github`
+# Component: `github-action-token-rotator`
 
 This component is responsible for provisioning
 [Github Action Token Rotator](https://github.com/cloudposse/terraform-aws-github-action-token-rotator).
